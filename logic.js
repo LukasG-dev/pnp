@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 document.getElementById("pdfUpload").addEventListener("change", function(event) {
     const file = event.target.files[0];
@@ -82,3 +82,28 @@ document.querySelectorAll(".maxValue").forEach(input => {
 });
 
 updateCheckboxes();
+
+// Funktion zum Aktualisieren des Geldbetrags
+function updateMoney() {
+    let currentMoney = document.getElementById('moneyInput');
+    let amountInput = document.getElementById('amountInput');
+
+    // Sicherstellen, dass Werte als Zahlen interpretiert werden
+    let currentMoneyValue = parseFloat(currentMoney.value) || 0;
+    let moneyToAdd = parseFloat(amountInput.value) || 0;
+
+    // Neuen Wert berechnen und setzen
+    let newMoneyValue = currentMoneyValue + moneyToAdd;
+    currentMoney.value = newMoneyValue.toFixed(2);
+}
+
+
+// Event Listener für Enter-Taste in der Eingabe
+document.getElementById('amountInput').addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        updateMoney();
+    }
+});
+
+
+// Hier der code um den inhalt in einer Json zu speichern und ihn wieder hochzuladen
