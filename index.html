@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pen and Paper</title>
-    <!-- Verlinke die externe CSS-Datei -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Charakter</h1>
     <input type="file" id="pdfUpload" accept="application/pdf">
-    <div class="container">
+        <div class="container">
         <!-- PDF Container (Left) -->
         <div class="pdf-container">
             <embed id="pdfViewer" type="application/pdf">
@@ -18,7 +17,6 @@
         
         <!-- Right Side Container (Checkboxes + Quest Log) -->
         <div>
-            <!-- Charakterstatus Header über dem gesamten Container -->
             <div class="charakterstatus-header"></div>
             
             <!-- Tabellencontainer für die Charakterdaten -->
@@ -41,17 +39,31 @@
                     </tr>
                     <tr>
                         <th>Hunger</th>
-                        <td><input type="number" class="maxValue" value="5" min="0"></td>
-                        <td class="checkbox-container"></td>
+                        <td class="checkbox-container">
+                            <div class="checkbox" data-state="0"></div>
+                            <div class="checkbox" data-state="0"></div>
+                            <div class="checkbox" data-state="0"></div>
+                        </td>
+                        <td><input type="number" id="hungerInput" class="maxValue" value="5" min="0" disabled></td>
                     </tr>
+                    
                     <tr>
                         <th>Resonanz</th>
                         <td><input type="text" class="maxValue" value="" min=""></td>
                         <td class="checkbox-container">
-                            <!-- Hier werden jetzt immer 3 feste Checkboxen für Resonanz hinzugefügt -->
                             <div class="checkbox" data-state="0"></div>
                             <div class="checkbox" data-state="0"></div>
                             <div class="checkbox" data-state="0"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Geld</th>
+                        <td>
+                            <input type="number" id="moneyInput" class="maxValue" value="0" min="0" disabled>
+                        </td>
+                        <td class="calculator-container">
+                            <!-- Eingabefeld für den Betrag, der addiert oder subtrahiert werden soll -->
+                            <input type="number" id="amountInput" value="0" min="0">
                         </td>
                     </tr>
                 </table>
@@ -63,9 +75,12 @@
                 <textarea id="questLog" placeholder="Schreibe hier deine Notizen..." oninput="autoResize(this)"></textarea>
             </div>
         </div>
+        <div class="container"> 
+            <button id="saveData">Speichern</button>
+            <input type="file" id="loadData" accept="application/json">
+         </div>
     </div>
 
-    <!-- Verlinke die externe JavaScript-Datei -->
     <script src="logic.js"></script>
 </body>
 </html>
